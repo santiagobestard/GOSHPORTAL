@@ -18,18 +18,17 @@
     header {
       background-color: #00a9ce;
       color: white;
-      padding: 30px 40px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
+      text-align: center;
+      padding: 60px 20px 40px 20px;
     }
 
     header img {
-      height: 100px;
+      height: 120px;
+      margin-bottom: 20px;
     }
 
     header h1 {
-      font-size: 2.2em;
+      font-size: 2.4em;
       margin: 0;
     }
 
@@ -95,7 +94,7 @@
 <body>
   <header>
     <img src="gosh-logo.png" alt="GOSH Logo">
-    <h1>GOSH ICU Learning Portal</h1>
+    <h1>Welcome to the GOSH ICU Learning Portal</h1>
   </header>
 
   <div class="container">
@@ -121,6 +120,7 @@
         <li onclick="showSection('lectures')"><a>Weekly Lectures</a></li>
         <li onclick="showSection('articles')"><a>Articles</a></li>
         <li onclick="showSection('quizzes')"><a>Quizzes</a></li>
+        <li onclick="showSection('resources')"><a>Resources</a></li>
       </ul>
     </nav>
 
@@ -140,6 +140,7 @@
       <div id="lectures" class="hidden">Weekly Lectures - [List of topics and videos]</div>
       <div id="articles" class="hidden">Articles - [PDFs and guidelines]</div>
       <div id="quizzes" class="hidden">Quizzes - [Interactive quizzes or links]</div>
+      <div id="resources" class="hidden">Resources - [Links to external tools, readings, templates]</div>
     </div>
   </div>
 
