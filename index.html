@@ -39,7 +39,7 @@
     }
 
     .sidebar {
-      width: 160px;
+      width: 200px;
       background-color: #e6f2f7;
       padding: 20px;
       box-sizing: border-box;
@@ -104,17 +104,23 @@
         <li>
           <a onclick="toggleSubmenu('icu-course')">ICU Course</a>
           <ul id="icu-course" class="hidden">
-            <li onclick="showSection('icu-intro')">Introduction</li>
+            <li onclick="showSection('icu-intro')">Introduction to Paediatric Intensive Care</li>
             <li onclick="showSection('monitoring')">Critical Care Monitoring</li>
-            <li onclick="showSection('ventilation')">Ventilation</li>
-            <li onclick="showSection('cardiac')">Cardiac-Haemodynamic</li>
-            <li onclick="showSection('onco')">Onco-Critical Care</li>
+            <li onclick="showSection('airway')">Airway Management</li>
+            <li onclick="showSection('ventilation')">Mechanical Ventilation</li>
+            <li onclick="showSection('cardiac')">Cardiac Intensive Care</li>
             <li onclick="showSection('neuro')">Neurocritical Care</li>
-            <li onclick="showSection('renal')">Renal Critical Care</li>
-            <li onclick="showSection('haem')">Haematological Critical Care</li>
-            <li onclick="showSection('pain')">Pain and Sedation</li>
-            <li onclick="showSection('withdrawal')">Withdrawal and Delirium</li>
-            <li onclick="showSection('wellbeing')">Wellbeing</li>
+            <li onclick="showSection('renal')">Renal and Electrolyte Management</li>
+            <li onclick="showSection('gi')">Gastrointestinal and Nutritional Support</li>
+            <li onclick="showSection('haem')">Haematology in Critical Care</li>
+            <li onclick="showSection('infection')">Infectious Diseases and AMS</li>
+            <li onclick="showSection('onco')">Oncology and Immunocompromised Patients</li>
+            <li onclick="showSection('pain')">Pain Management and Sedation</li>
+            <li onclick="showSection('delirium')">Delirium, Withdrawal and Agitation</li>
+            <li onclick="showSection('eol')">Palliative and End-of-Life Care</li>
+            <li onclick="showSection('wellbeing')">Family Support and Staff Wellbeing</li>
+            <li onclick="showSection('pharma')">Pharmacology in the PICU</li>
+            <li onclick="showSection('risk')">Clinical Risk Management and Patient Safety</li>
           </ul>
         </li>
         <li onclick="showSection('lectures')"><a>Weekly Lectures</a></li>
@@ -126,17 +132,23 @@
 
     <div class="content">
       <div id="induction">Welcome to your ICU rotation. Here's a guide to getting started.</div>
-      <div id="icu-intro" class="hidden">ICU Course Introduction - [List of videos here]</div>
-      <div id="monitoring" class="hidden">Critical Care Monitoring - [List of videos here]</div>
-      <div id="ventilation" class="hidden">Ventilation - [List of videos here]</div>
-      <div id="cardiac" class="hidden">Cardiac-Haemodynamic Critical Care - [List of videos here]</div>
-      <div id="onco" class="hidden">Onco-Critical Care - [List of videos here]</div>
-      <div id="neuro" class="hidden">Neurocritical Care - [List of videos here]</div>
-      <div id="renal" class="hidden">Renal Critical Care - [List of videos here]</div>
-      <div id="haem" class="hidden">Haematological Critical Care - [List of videos here]</div>
-      <div id="pain" class="hidden">Pain and Sedation - [List of videos here]</div>
-      <div id="withdrawal" class="hidden">Withdrawal and Delirium - [List of videos here]</div>
-      <div id="wellbeing" class="hidden">Wellbeing - [List of videos here]</div>
+      <div id="icu-intro" class="hidden">[Content for Introduction]</div>
+      <div id="monitoring" class="hidden">[Content for Critical Care Monitoring]</div>
+      <div id="airway" class="hidden">[Content for Airway Management]</div>
+      <div id="ventilation" class="hidden">[Content for Mechanical Ventilation]</div>
+      <div id="cardiac" class="hidden">[Content for Cardiac Intensive Care]</div>
+      <div id="neuro" class="hidden">[Content for Neurocritical Care]</div>
+      <div id="renal" class="hidden">[Content for Renal and Electrolyte Management]</div>
+      <div id="gi" class="hidden">[Content for GI and Nutrition]</div>
+      <div id="haem" class="hidden">[Content for Haematology]</div>
+      <div id="infection" class="hidden">[Content for Infectious Diseases]</div>
+      <div id="onco" class="hidden">[Content for Oncology]</div>
+      <div id="pain" class="hidden">[Content for Pain and Sedation]</div>
+      <div id="delirium" class="hidden">[Content for Delirium and Withdrawal]</div>
+      <div id="eol" class="hidden">[Content for End-of-Life Care]</div>
+      <div id="wellbeing" class="hidden">[Content for Family Support and Wellbeing]</div>
+      <div id="pharma" class="hidden">[Content for Pharmacology]</div>
+      <div id="risk" class="hidden">[Content for Risk and Patient Safety]</div>
       <div id="lectures" class="hidden">Weekly Lectures - [List of topics and videos]</div>
       <div id="articles" class="hidden">Articles - [PDFs and guidelines]</div>
       <div id="quizzes" class="hidden">Quizzes - [Interactive quizzes or links]</div>
