@@ -11,34 +11,50 @@
       background-color: #f4f9fb;
       color: #003087;
     }
+
     header {
       background-color: #00a9ce;
       color: white;
       padding: 20px;
       text-align: center;
     }
-<nav class="sidebar">
-  <ul>
-    <li><a href="#induction">Induction</a></li>
-    <li><a href="#course">ICU Course</a></li>
-    <li><a href="#lectures">Weekly Lectures</a></li>
-    <li><a href="#articles">Articles</a></li>
-    <li><a href="#quizzes">Quizzes</a></li>
-  </ul>
-</nav>
-    nav a {
+
+    .sidebar {
+      width: 180px;
+      float: left;
+      background-color: #e6f2f7;
+      padding: 20px;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
       color: #003087;
       text-decoration: none;
       font-weight: bold;
     }
-    nav a:hover {
+
+    .sidebar a:hover {
       text-decoration: underline;
     }
+
     .content {
+      margin-left: 200px;
       padding: 40px;
       max-width: 800px;
-      margin: auto;
+      box-sizing: border-box;
     }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -50,16 +66,18 @@
 </head>
 <body>
   <header>
- <img src="gosh-logo.png" alt="GOSH Logo" style="height: 180px; vertical-align: middle;" />
+    <img src="gosh-logo.png" alt="GOSH Logo" style="height: 180px; vertical-align: middle;" />
     <h1>Welcome to the GOSH ICU Learning Portal</h1> 
   </header>
 
-  <nav>
-    <a href="#induction">Induction</a>
-    <a href="#course">ICU Course</a>
-    <a href="#lectures">Weekly Lectures</a>
-    <a href="#articles">Articles</a>
-    <a href="#quizzes">Quizzes</a>
+  <nav class="sidebar">
+    <ul>
+      <li><a href="#induction">Induction</a></li>
+      <li><a href="#course">ICU Course</a></li>
+      <li><a href="#lectures">Weekly Lectures</a></li>
+      <li><a href="#articles">Articles</a></li>
+      <li><a href="#quizzes">Quizzes</a></li>
+    </ul>
   </nav>
 
   <div class="content">
