@@ -2,87 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GOSH ICU Learning Portal - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GOSH ICU Portal Login</title>
   <style>
     body {
-      background-color: #e6f2f7;
       font-family: Arial, sans-serif;
+      background-color: #f4f9fb;
+      color: #003087;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
     }
-
     .login-container {
-      background-color: white;
+      background-color: #ffffff;
       padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      width: 90%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
       max-width: 400px;
+    }
+    h2 {
       text-align: center;
+      color: #00a9ce;
     }
-
-    .login-container img {
-      height: 60px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      color: #003087;
-      font-size: 22px;
-      margin-bottom: 30px;
-    }
-
     input {
-      display: block;
       width: 100%;
       padding: 12px;
-      margin-bottom: 16px;
+      margin: 10px 0;
       border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
+      border-radius: 6px;
     }
-
     button {
       width: 100%;
       padding: 12px;
-      font-size: 16px;
-      color: white;
       background-color: #00a9ce;
+      color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
+      font-weight: bold;
       cursor: pointer;
-      margin-bottom: 10px;
     }
-
     button:hover {
-      background-color: #007ea6;
+      background-color: #007ea7;
     }
-
     .error {
       color: red;
-      font-size: 14px;
+      text-align: center;
       margin-top: 10px;
     }
   </style>
-</head>
-<body>
-  <div class="login-container">
-    <img src="gosh-logo.png" alt="GOSH Logo" />
-    <h1>GOSH ICU Learning Portal</h1>
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
-    <button onclick="signup()">Sign Up</button>
-    <p id="error" class="error"></p>
-  </div>
-
-  <!-- Firebase scripts -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyCWlylrxyEoB65my9bAVubfNx9Y3OId-mI",
@@ -92,51 +65,36 @@
       messagingSenderId: "339833661792",
       appId: "1:339833661792:web:72ee4fcf9d8ea8bb935605"
     };
-
     firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-
-    function isAuthorizedEmail(email) {
-      return email.endsWith("@gosh.nhs.uk");
-    }
 
     function login() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const error = document.getElementById("error");
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('error');
+      errorMsg.textContent = '';
 
-      if (!isAuthorizedEmail(email)) {
-        error.textContent = "Only authorized emails are allowed.";
+      if (!email.endsWith('@gosh.nhs.uk')) {
+        errorMsg.textContent = 'Only @gosh.nhs.uk emails are allowed.';
         return;
       }
 
-      auth.signInWithEmailAndPassword(email, password)
+      firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => {
-          window.location.href = "index.html"; // ✅ Correct redirect
+          window.location.href = 'index.html';
         })
-        .catch((err) => {
-          error.textContent = err.message;
-        });
-    }
-
-    function signup() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const error = document.getElementById("error");
-
-      if (!isAuthorizedEmail(email)) {
-        error.textContent = "Only authorized emails are allowed.";
-        return;
-      }
-
-      auth.createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          window.location.href = "index.html"; // ✅ Correct redirect
-        })
-        .catch((err) => {
-          error.textContent = err.message;
+        .catch(error => {
+          errorMsg.textContent = error.message;
         });
     }
   </script>
+</head>
+<body>
+  <div class="login-container">
+    <h2>GOSH ICU Portal Login</h2>
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button onclick="login()">Login</button>
+    <div id="error" class="error"></div>
+  </div>
 </body>
 </html>
