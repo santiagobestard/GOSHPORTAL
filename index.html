@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GOSH ICU Learning Portal</title>
 
-  <!-- Firebase Auth & User Protection -->
+  <!-- Firebase Auth -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import {
@@ -35,21 +35,19 @@
     });
 
     window.addEventListener("DOMContentLoaded", () => {
-      const logoutBtn = document.getElementById("logout-btn");
-      if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-          signOut(auth).then(() => {
-            window.location.href = "login.html";
-          });
+      document.getElementById("logout-btn").addEventListener("click", () => {
+        const auth = getAuth();
+        signOut(auth).then(() => {
+          window.location.href = "login.html";
         });
-      }
+      });
     });
   </script>
 
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
+      font-family: Arial, sans-serif;
       background-color: #f0f4f5;
       color: #003087;
       display: flex;
@@ -57,42 +55,42 @@
       height: 100vh;
     }
 
-    header {
-      background-color: #0072ce;
-      color: white;
+    .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 30px;
-      position: relative;
-    }
-
-    header img {
-      height: 80px;
-    }
-
-    header h1 {
-      font-size: 1.6em;
-      margin: 0;
-    }
-
-    #user-info {
-      text-align: right;
-    }
-
-    #user-email {
+      background-color: #0072ce;
+      padding: 10px 20px;
+      color: white;
       font-size: 0.9em;
-      margin-bottom: 5px;
     }
 
     #logout-btn {
       padding: 5px 10px;
-      font-size: 0.85em;
-      background-color: #ffffff;
+      font-size: 0.8em;
+      background-color: white;
       color: #0072ce;
-      border: 1px solid #ffffff;
+      border: 1px solid white;
       border-radius: 4px;
       cursor: pointer;
+    }
+
+    header {
+      background-color: #0072ce;
+      color: white;
+      text-align: center;
+      padding: 20px 20px 10px 20px;
+    }
+
+    header img {
+      width: 220px;
+      max-width: 100%;
+    }
+
+    header h1 {
+      font-size: 1.8em;
+      margin-top: 15px;
+      margin-bottom: 10px;
     }
 
     .container {
@@ -102,7 +100,7 @@
     }
 
     .sidebar {
-      width: 150px;
+      width: 180px;
       background-color: #e6f2f7;
       padding: 20px 15px;
       box-sizing: border-box;
@@ -154,18 +152,21 @@
   </style>
 </head>
 <body>
+  <!-- Top Bar with Username and Logout -->
+  <div class="topbar">
+    <div id="user-email">Loading...</div>
+    <button id="logout-btn">Logout</button>
+  </div>
+
+  <!-- Logo & Title -->
   <header>
-    <div>
-      <img src="gosh-logo.png" alt="GOSH Logo">
-    </div>
+    <img src="gosh-logo.png" alt="GOSH Logo" />
     <h1>GOSH ICU Learning Portal</h1>
-    <div id="user-info">
-      <div id="user-email"></div>
-      <button id="logout-btn">Logout</button>
-    </div>
   </header>
 
+  <!-- Main Layout -->
   <div class="container">
+    <!-- Sidebar -->
     <nav class="sidebar">
       <ul>
         <li onclick="showSection('induction')">Induction</li>
@@ -197,6 +198,7 @@
       </ul>
     </nav>
 
+    <!-- Content Area -->
     <div class="content">
       <div id="induction">Welcome to your ICU rotation. Here's a guide to getting started.</div>
       <div id="intro" class="hidden">[Content for Introduction]</div>
