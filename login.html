@@ -67,7 +67,7 @@
       projectId: "goshicu-portal",
       storageBucket: "goshicu-portal.appspot.com",
       messagingSenderId: "339833661792",
-      appId: "1:339833661792:web:XXXXXX" // Replace XXXXXX with the actual appId from Firebase
+      appId: "1:339833661792:web:5ddaaeb7f2a99ef0a8f1a9"
     };
     firebase.initializeApp(firebaseConfig);
   </script>
@@ -87,10 +87,10 @@
     const auth = firebase.auth();
 
     function login() {
-      const email = document.getElementById("email").value;
+      const email = document.getElementById("email").value.trim().toLowerCase();
       const password = document.getElementById("password").value;
 
-      if (!email.endsWith("@gosh.org") && !email.endsWith("@gmail.com")) {
+      if (!email.endsWith("@gosh.nhs.uk")) {
         document.getElementById("error-message").innerText = "Only authorized emails are allowed.";
         return;
       }
@@ -105,10 +105,10 @@
     }
 
     function signup() {
-      const email = document.getElementById("email").value;
+      const email = document.getElementById("email").value.trim().toLowerCase();
       const password = document.getElementById("password").value;
 
-      if (!email.endsWith("@gosh.org") && !email.endsWith("@gmail.com")) {
+      if (!email.endsWith("@gosh.nhs.uk")) {
         document.getElementById("error-message").innerText = "Only authorized emails are allowed.";
         return;
       }
