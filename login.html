@@ -113,7 +113,7 @@
 
       auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
-          window.location.href = "/GOSHPORTAL/";
+          window.location.href = "index.html";
         })
         .catch(error => {
           document.getElementById("error-message").innerText = error.message;
