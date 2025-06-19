@@ -95,7 +95,7 @@
 
       auth.signInWithEmailAndPassword(email, password)
         .then(() => {
-          window.location.href = "index.html";
+          window.location.href = "/";
         })
         .catch(error => {
           document.getElementById("error-message").innerText = error.message;
@@ -113,7 +113,7 @@
 
       auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
-          window.location.href = "index.html";
+          window.location.href = "/";
         })
         .catch(error => {
           document.getElementById("error-message").innerText = error.message;
