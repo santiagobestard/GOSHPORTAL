@@ -47,12 +47,22 @@
       border-radius: 5px;
       cursor: pointer;
       width: 100%;
+      margin-bottom: 1rem;
     }
 
     .login-container p#error {
       color: red;
       margin-top: 0.5rem;
       font-size: 0.9em;
+    }
+
+    .forgot-password {
+      font-size: 0.85em;
+      color: #0072ce;
+      cursor: pointer;
+      text-decoration: underline;
+      background: none;
+      border: none;
     }
   </style>
 </head>
@@ -63,6 +73,7 @@
     <input type="email" id="email" placeholder="Email" />
     <input type="password" id="password" placeholder="Password" />
     <button id="login">Login</button>
+    <button class="forgot-password" id="reset-password">Forgot password?</button>
     <p id="error"></p>
   </div>
 
@@ -70,7 +81,8 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import {
       getAuth,
-      signInWithEmailAndPassword
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail
     } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
     const firebaseConfig = {
@@ -85,10 +97,13 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    document.getElementById("login").addEventListener("click", () => {
+    const loginBtn = document.getElementById("login");
+    const resetBtn = document.getElementById("reset-password");
+    const errorElement = document.getElementById("error");
+
+    loginBtn.addEventListener("click", () => {
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
-      const errorElement = document.getElementById("error");
 
       if (!email.endsWith("@gosh.nhs.uk")) {
         errorElement.innerText = "Only @gosh.nhs.uk email addresses are allowed.";
@@ -101,6 +116,24 @@
         })
         .catch((error) => {
           errorElement.innerText = "Invalid email or password.";
+        });
+    });
+
+    resetBtn.addEventListener("click", () => {
+      const email = document.getElementById("email").value.trim();
+      if (!email) {
+        errorElement.innerText = "Please enter your NHS email address first.";
+        return;
+      }
+
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          errorElement.style.color = "green";
+          errorElement.innerText = "Password reset email sent.";
+        })
+        .catch((error) => {
+          errorElement.style.color = "red";
+          errorElement.innerText = "Could not send reset email. Check the email entered.";
         });
     });
   </script>
