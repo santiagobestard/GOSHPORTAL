@@ -133,15 +133,6 @@
     <h1>Welcome to the GOSH ICU Learning Portal</h1>
   </header>
 
-  <div id="auth-section" style="text-align: center; padding: 20px;">
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
-    <button onclick="signup()">Sign Up</button>
-    <button onclick="logout()" style="display: none;" id="logout-btn">Logout</button>
-    <p id="user-info"></p>
-  </div>
-
   <div class="container">
     <nav class="sidebar">
       <ul>
@@ -207,48 +198,23 @@
   <script>
     const auth = firebase.auth();
 
-    function login() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      auth.signInWithEmailAndPassword(email, password)
-        .catch(error => alert(error.message));
-    }
-
-    function signup() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      auth.createUserWithEmailAndPassword(email, password)
-        .catch(error => alert(error.message));
-    }
-
-    function logout() {
-      auth.signOut();
-    }
-
     auth.onAuthStateChanged(user => {
-      const content = document.querySelector('.container');
-      const authSection = document.getElementById('auth-section');
-      const logoutBtn = document.getElementById('logout-btn');
-      const userInfo = document.getElementById('user-info');
-
-      if (user) {
-        content.style.display = 'flex';
-        logoutBtn.style.display = 'inline-block';
-        authSection.querySelector('input[type=email]').style.display = 'none';
-        authSection.querySelector('input[type=password]').style.display = 'none';
-        authSection.querySelector('button[onclick="login()"]')?.style.display = 'none';
-        authSection.querySelector('button[onclick="signup()"]')?.style.display = 'none';
-        userInfo.innerText = `Logged in as ${user.email}`;
-      } else {
-        content.style.display = 'none';
-        logoutBtn.style.display = 'none';
-        authSection.querySelector('input[type=email]').style.display = 'inline-block';
-        authSection.querySelector('input[type=password]').style.display = 'inline-block';
-        authSection.querySelector('button[onclick="login()"]')?.style.display = 'inline-block';
-        authSection.querySelector('button[onclick="signup()"]')?.style.display = 'inline-block';
-        userInfo.innerText = '';
+      if (!user) {
+        window.location.href = "login.html";
       }
     });
 
     function showSection(id) {
-      document.querySelectorAll('.content > div').for
+      document.querySelectorAll('.content > div').forEach(div => {
+        div.classList.add('hidden');
+      });
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
