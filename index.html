@@ -36,7 +36,6 @@
 
     window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("logout-btn").addEventListener("click", () => {
-        const auth = getAuth();
         signOut(auth).then(() => {
           window.location.href = "login.html";
         });
@@ -48,7 +47,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f0f4f5;
+      background-color: #f4f9fb;
       color: #003087;
       display: flex;
       flex-direction: column;
@@ -60,17 +59,17 @@
       justify-content: space-between;
       align-items: center;
       background-color: #0072ce;
-      padding: 10px 20px;
       color: white;
-      font-size: 0.9em;
+      font-size: 0.85em;
+      padding: 6px 16px;
     }
 
     #logout-btn {
-      padding: 5px 10px;
-      font-size: 0.8em;
       background-color: white;
       color: #0072ce;
-      border: 1px solid white;
+      border: none;
+      padding: 5px 12px;
+      font-size: 0.8em;
       border-radius: 4px;
       cursor: pointer;
     }
@@ -79,32 +78,32 @@
       background-color: #0072ce;
       color: white;
       text-align: center;
-      padding: 20px 20px 10px 20px;
+      padding: 25px 10px 30px;
     }
 
     header img {
-      width: 220px;
-      max-width: 100%;
+      width: 230px;
+      margin-bottom: 10px;
     }
 
     header h1 {
       font-size: 1.8em;
-      margin-top: 15px;
-      margin-bottom: 10px;
+      margin: 10px 0 0;
     }
 
     .container {
       display: flex;
       flex: 1;
+      min-height: 0;
       height: 100%;
     }
 
     .sidebar {
       width: 180px;
       background-color: #e6f2f7;
-      padding: 20px 15px;
+      padding: 20px 10px;
       box-sizing: border-box;
-      font-size: 0.9em;
+      font-size: 0.95em;
     }
 
     .sidebar ul {
@@ -114,21 +113,29 @@
     }
 
     .sidebar li {
-      margin-bottom: 12px;
-      cursor: pointer;
+      padding: 8px 12px;
+      margin-bottom: 5px;
+      border-radius: 6px;
       font-weight: bold;
-      padding: 4px;
-      border-radius: 4px;
+      cursor: pointer;
     }
 
-    .sidebar li:hover {
-      background-color: #d0e8f3;
+    .sidebar li:hover,
+    .sidebar li.active {
+      background-color: #cbe5f5;
+    }
+
+    .sidebar li ul {
+      list-style-type: none;
+      padding-left: 15px;
+      margin-top: 5px;
+      display: none;
     }
 
     .sidebar li ul li {
       font-weight: normal;
-      margin: 4px 0 4px 10px;
-      color: #003087;
+      margin-bottom: 5px;
+      padding: 5px;
       cursor: pointer;
     }
 
@@ -140,36 +147,60 @@
     }
 
     .content > div {
-      background: white;
-      border-radius: 10px;
+      background-color: white;
       padding: 30px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
     }
 
     .hidden {
       display: none;
     }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        font-size: 0.85em;
+        width: 150px;
+      }
+
+      header img {
+        width: 180px;
+      }
+
+      header h1 {
+        font-size: 1.4em;
+      }
+
+      .topbar {
+        font-size: 0.75em;
+        padding: 5px 12px;
+      }
+
+      #logout-btn {
+        font-size: 0.75em;
+        padding: 4px 10px;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Top Bar with Username and Logout -->
+  <!-- Username & Logout Topbar -->
   <div class="topbar">
     <div id="user-email">Loading...</div>
     <button id="logout-btn">Logout</button>
   </div>
 
-  <!-- Logo & Title -->
+  <!-- Main Header -->
   <header>
     <img src="gosh-logo.png" alt="GOSH Logo" />
     <h1>GOSH ICU Learning Portal</h1>
   </header>
 
-  <!-- Main Layout -->
+  <!-- Body Content -->
   <div class="container">
-    <!-- Sidebar -->
     <nav class="sidebar">
       <ul>
-        <li onclick="showSection('induction')">Induction</li>
+        <li onclick="showSection('induction')" class="active">Induction</li>
         <li onclick="toggleSubmenu('icu-submenu')">ICU Course
           <ul id="icu-submenu">
             <li onclick="showSection('intro')">Introduction</li>
@@ -198,7 +229,6 @@
       </ul>
     </nav>
 
-    <!-- Content Area -->
     <div class="content">
       <div id="induction">Welcome to your ICU rotation. Here's a guide to getting started.</div>
       <div id="intro" class="hidden">[Content for Introduction]</div>
@@ -231,6 +261,14 @@
         div.classList.add('hidden');
       });
       document.getElementById(id).classList.remove('hidden');
+
+      document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
+      const links = document.querySelectorAll('.sidebar li');
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(id)) {
+          link.classList.add('active');
+        }
+      });
     }
 
     function toggleSubmenu(id) {
