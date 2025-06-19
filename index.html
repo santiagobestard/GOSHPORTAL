@@ -58,6 +58,19 @@
       font-weight: bold;
     }
 
+    .sidebar li ul {
+      list-style-type: none;
+      padding-left: 10px;
+      display: none;
+    }
+
+    .sidebar li ul li {
+      font-weight: normal;
+      margin-bottom: 5px;
+      color: #003087;
+      cursor: pointer;
+    }
+
     .sidebar a {
       text-decoration: none;
       color: #003087;
@@ -91,23 +104,27 @@
     <nav class="sidebar">
       <ul>
         <li onclick="showSection('induction')">Induction</li>
-        <li onclick="showSection('intro')">Introduction</li>
-        <li onclick="showSection('monitoring')">Monitoring</li>
-        <li onclick="showSection('airway')">Airway</li>
-        <li onclick="showSection('ventilation')">Ventilation</li>
-        <li onclick="showSection('cardiac')">Cardiac</li>
-        <li onclick="showSection('neuro')">Neuro</li>
-        <li onclick="showSection('renal')">Renal</li>
-        <li onclick="showSection('gi')">GI/Nutrition</li>
-        <li onclick="showSection('haem')">Haematology</li>
-        <li onclick="showSection('infection')">Infectious</li>
-        <li onclick="showSection('onco')">Oncology</li>
-        <li onclick="showSection('pain')">Pain/Sedation</li>
-        <li onclick="showSection('delirium')">Delirium</li>
-        <li onclick="showSection('eol')">Palliative</li>
-        <li onclick="showSection('wellbeing')">Wellbeing</li>
-        <li onclick="showSection('pharma')">Pharma</li>
-        <li onclick="showSection('risk')">Risk</li>
+        <li onclick="toggleSubmenu('icu-submenu')">ICU Course
+          <ul id="icu-submenu">
+            <li onclick="showSection('intro')">Introduction</li>
+            <li onclick="showSection('monitoring')">Monitoring</li>
+            <li onclick="showSection('airway')">Airway</li>
+            <li onclick="showSection('ventilation')">Ventilation</li>
+            <li onclick="showSection('cardiac')">Cardiac</li>
+            <li onclick="showSection('neuro')">Neuro</li>
+            <li onclick="showSection('renal')">Renal</li>
+            <li onclick="showSection('gi')">GI/Nutrition</li>
+            <li onclick="showSection('haem')">Haematology</li>
+            <li onclick="showSection('infection')">Infectious</li>
+            <li onclick="showSection('onco')">Oncology</li>
+            <li onclick="showSection('pain')">Pain/Sedation</li>
+            <li onclick="showSection('delirium')">Delirium</li>
+            <li onclick="showSection('eol')">Palliative</li>
+            <li onclick="showSection('wellbeing')">Wellbeing</li>
+            <li onclick="showSection('pharma')">Pharma</li>
+            <li onclick="showSection('risk')">Risk</li>
+          </ul>
+        </li>
         <li onclick="showSection('lectures')">Lectures</li>
         <li onclick="showSection('articles')">Articles</li>
         <li onclick="showSection('quizzes')">Quizzes</li>
@@ -147,6 +164,11 @@
         div.classList.add('hidden');
       });
       document.getElementById(id).classList.remove('hidden');
+    }
+
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     }
   </script>
 </body>
