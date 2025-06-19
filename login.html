@@ -62,12 +62,12 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
   <script>
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyCWIylrxyEoB65my9bAVubfNx9Y3Old-ml",
+      authDomain: "goshicu-portal.firebaseapp.com",
+      projectId: "goshicu-portal",
+      storageBucket: "goshicu-portal.appspot.com",
+      messagingSenderId: "339833661792",
+      appId: "1:339833661792:web:XXXXXX" // Replace XXXXXX with the actual appId from Firebase
     };
     firebase.initializeApp(firebaseConfig);
   </script>
@@ -89,6 +89,12 @@
     function login() {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
+
+      if (!email.endsWith("@gosh.org") && !email.endsWith("@gmail.com")) {
+        document.getElementById("error-message").innerText = "Only authorized emails are allowed.";
+        return;
+      }
+
       auth.signInWithEmailAndPassword(email, password)
         .then(() => {
           window.location.href = "index.html";
@@ -101,6 +107,12 @@
     function signup() {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
+
+      if (!email.endsWith("@gosh.org") && !email.endsWith("@gmail.com")) {
+        document.getElementById("error-message").innerText = "Only authorized emails are allowed.";
+        return;
+      }
+
       auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
           window.location.href = "index.html";
