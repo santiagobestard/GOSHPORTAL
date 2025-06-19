@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GOSH ICU Learning Portal</title>
+  <link rel="icon" type="image/png" href="gosh-logo.png" />
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -56,12 +57,18 @@
       margin-bottom: 10px;
       cursor: pointer;
       font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar li:hover {
+      background-color: #d2eaf3;
     }
 
     .sidebar li ul {
       list-style-type: none;
       padding-left: 10px;
       display: none;
+      transition: all 0.3s ease;
     }
 
     .sidebar li ul li {
@@ -87,6 +94,14 @@
       box-sizing: border-box;
       overflow-y: auto;
       background-color: #f4f9fb;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #e6f2f7;
+      color: #666;
+      font-size: 0.8em;
     }
 
     .hidden {
@@ -157,6 +172,10 @@
       <div id="resources" class="hidden">Resources - [Links to external tools, readings, templates]</div>
     </div>
   </div>
+
+  <footer>
+    &copy; 2025 Great Ormond Street Hospital | PICU Education
+  </footer>
 
   <script>
     function showSection(id) {
