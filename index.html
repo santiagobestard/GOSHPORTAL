@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GOSH ICU Learning Portal</title>
 
-  <!-- Firebase Auth protection and user info -->
+  <!-- Firebase Auth & User Protection -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import {
@@ -50,7 +50,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background-color: #f4f9fb;
+      background-color: #f0f4f5;
       color: #003087;
       display: flex;
       flex-direction: column;
@@ -58,41 +58,39 @@
     }
 
     header {
-      background-color: #00a9ce;
+      background-color: #0072ce;
       color: white;
-      text-align: center;
-      padding: 60px 20px 40px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
       position: relative;
     }
 
     header img {
-      height: 120px;
-      margin-bottom: 20px;
+      height: 80px;
     }
 
     header h1 {
-      font-size: 2.4em;
+      font-size: 1.6em;
       margin: 0;
     }
 
     #user-info {
-      position: absolute;
-      top: 20px;
-      right: 20px;
       text-align: right;
     }
 
     #user-email {
       font-size: 0.9em;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
 
     #logout-btn {
       padding: 5px 10px;
-      font-size: 0.8em;
-      background-color: #fff;
-      color: #003087;
-      border: 1px solid #003087;
+      font-size: 0.85em;
+      background-color: #ffffff;
+      color: #0072ce;
+      border: 1px solid #ffffff;
       border-radius: 4px;
       cursor: pointer;
     }
@@ -104,11 +102,11 @@
     }
 
     .sidebar {
-      width: 110px;
+      width: 150px;
       background-color: #e6f2f7;
-      padding: 10px;
+      padding: 20px 15px;
       box-sizing: border-box;
-      font-size: 0.85em;
+      font-size: 0.9em;
     }
 
     .sidebar ul {
@@ -118,32 +116,22 @@
     }
 
     .sidebar li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       cursor: pointer;
       font-weight: bold;
+      padding: 4px;
+      border-radius: 4px;
     }
 
-    .sidebar li ul {
-      list-style-type: none;
-      padding-left: 10px;
-      display: none;
+    .sidebar li:hover {
+      background-color: #d0e8f3;
     }
 
     .sidebar li ul li {
       font-weight: normal;
-      margin-bottom: 5px;
+      margin: 4px 0 4px 10px;
       color: #003087;
       cursor: pointer;
-    }
-
-    .sidebar a {
-      text-decoration: none;
-      color: #003087;
-      display: block;
-    }
-
-    .sidebar a:hover {
-      text-decoration: underline;
     }
 
     .content {
@@ -151,7 +139,13 @@
       padding: 40px;
       box-sizing: border-box;
       overflow-y: auto;
-      background-color: #f4f9fb;
+    }
+
+    .content > div {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
     .hidden {
@@ -161,8 +155,10 @@
 </head>
 <body>
   <header>
-    <img src="gosh-logo.png" alt="GOSH Logo">
-    <h1>Welcome to the GOSH ICU Learning Portal</h1>
+    <div>
+      <img src="gosh-logo.png" alt="GOSH Logo">
+    </div>
+    <h1>GOSH ICU Learning Portal</h1>
     <div id="user-info">
       <div id="user-email"></div>
       <button id="logout-btn">Logout</button>
