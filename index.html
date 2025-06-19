@@ -12,156 +12,144 @@
       background-color: #f4f9fb;
       color: #003087;
       display: flex;
+      flex-direction: column;
       min-height: 100vh;
     }
-
-    .sidebar {
-      width: 220px;
-      background-color: #e6f2f7;
+    header {
+      background-color: #00a9ce;
+      color: white;
+      text-align: center;
       padding: 20px;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-      overflow-y: auto;
     }
-
-    .sidebar h2 {
-      font-size: 1.2em;
+    header img {
+      height: 80px;
       margin-bottom: 10px;
     }
-
+    main {
+      display: flex;
+      flex: 1;
+    }
+    .sidebar {
+      width: 180px;
+      background-color: #e6f2f7;
+      padding: 20px;
+      box-sizing: border-box;
+    }
     .sidebar a {
       display: block;
-      margin: 8px 0;
       color: #003087;
-      text-decoration: none;
       font-weight: bold;
+      text-decoration: none;
+      margin: 10px 0;
+      cursor: pointer;
     }
-
     .sidebar a:hover {
       text-decoration: underline;
     }
-
     .submenu {
       margin-left: 10px;
       display: none;
     }
-
     .submenu a {
       font-weight: normal;
     }
-
     .content {
       flex: 1;
-      padding: 20px;
+      padding: 30px;
     }
-
-    header {
-      background-color: #00a9ce;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header img {
-      height: 100px;
-      margin-bottom: 10px;
-    }
-
     footer {
       text-align: center;
-      padding: 10px;
       background-color: #e6f2f7;
       color: #666;
+      padding: 15px;
+    }
+    .logout {
+      margin-top: 20px;
+      background: #00a9ce;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
     }
   </style>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyCWIylrxyEoB65my9bAVubfNx9Y3Old-ml",
+      apiKey: "YOUR_API_KEY",
       authDomain: "goshicu-portal.firebaseapp.com",
       projectId: "goshicu-portal",
       storageBucket: "goshicu-portal.appspot.com",
       messagingSenderId: "339833661792",
-      appId: "1:339833661792:web:5ddaaeb7f2a99ef0a8f1a9"
+      appId: "1:339833661792:web:720ed4fcf9d8ea8bb935605"
     };
     firebase.initializeApp(firebaseConfig);
-  </script>
-</head>
-<body>
-  <div class="sidebar">
-    <h2>Sections</h2>
-    <a href="#induction">Induction</a>
-    <a href="#icu-course" onclick="toggleSubmenu('icu')">ICU Course ▾</a>
-    <div id="icu" class="submenu">
-      <a href="#introduction">Introduction</a>
-      <a href="#monitoring">Critical Care Monitoring</a>
-      <a href="#airway">Airway Management</a>
-      <a href="#ventilation">Ventilation</a>
-      <a href="#cardiac">Cardiac-critical Care</a>
-      <a href="#neuro">Neurocritical Care</a>
-      <a href="#renal">Renal Critical Care</a>
-      <a href="#gastro">GI-Nutrition Critical Care</a>
-      <a href="#haematology">Haematology Critical Care</a>
-      <a href="#infectology">Infectology & AMS</a>
-      <a href="#onco">Onco-Critical Care</a>
-      <a href="#pain">Pain and Sedation</a>
-      <a href="#eol">End of Life & Palliative Care</a>
-      <a href="#pharmacology">Pharmacology</a>
-      <a href="#risk">Risk and Management</a>
-      <a href="#delirium">Withdrawal and Delirium</a>
-      <a href="#wellbeing">Wellbeing</a>
-    </div>
-    <a href="#lectures">Weekly Lectures</a>
-    <a href="#articles">Articles</a>
-    <a href="#quizzes">Quizzes</a>
-  </div>
-  <div class="content">
-    <header>
-      <img src="gosh-logo.png" alt="GOSH Logo">
-      <h1>Welcome to the GOSH ICU Learning Portal</h1>
-    </header>
-
-    <section id="induction">
-      <h2>Induction</h2>
-      <p>Welcome to your ICU rotation. Here you'll find orientation info, protocols, and key contacts.</p>
-    </section>
-
-    <section id="icu-course">
-      <h2>ICU Course</h2>
-      <p>Select a topic from the sidebar to get started.</p>
-    </section>
-
-    <section id="lectures">
-      <h2>Weekly Lectures</h2>
-      <p>Watch our recorded lectures. Topics updated weekly.</p>
-    </section>
-
-    <section id="articles">
-      <h2>Articles</h2>
-      <p>Access key readings and guidelines in PDF format here.</p>
-    </section>
-
-    <section id="quizzes">
-      <h2>Quizzes</h2>
-      <p>Test your knowledge with our interactive quizzes.</p>
-    </section>
-
-    <footer>
-      &copy; 2025 Great Ormond Street Hospital | PICU Education
-    </footer>
-  </div>
-
-  <script>
-    firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-        window.location.href = "login.html";
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user || !user.email.endsWith('@gosh.nhs.uk')) {
+        window.location.href = 'login.html';
       }
     });
-
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        window.location.href = 'login.html';
+      });
+    }
     function toggleSubmenu(id) {
       const submenu = document.getElementById(id);
       submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     }
   </script>
-</body>
-</html>
+</head>
+<body>
+  <header>
+    <img src="gosh-logo.png" alt="GOSH Logo" />
+    <h1>GOSH ICU Learning Portal</h1>
+  </header>
+
+  <main>
+    <nav class="sidebar">
+      <a onclick="showContent('induction')">Induction</a>
+      <a onclick="toggleSubmenu('icu-submenu')">ICU Course</a>
+      <div id="icu-submenu" class="submenu">
+        <a onclick="showContent('intro')">Introduction</a>
+        <a onclick="showContent('monitoring')">Critical Care Monitoring</a>
+        <a onclick="showContent('airway')">Airway Management</a>
+        <a onclick="showContent('ventilation')">Ventilation</a>
+        <a onclick="showContent('cardiac')">Cardiac-critical Care</a>
+        <a onclick="showContent('neuro')">Neurocritical Care</a>
+        <a onclick="showContent('renal')">Renal Critical Care</a>
+        <a onclick="showContent('gi')">GI-Nutrition Critical Care</a>
+        <a onclick="showContent('haem')">Haematology Critical Care</a>
+        <a onclick="showContent('infect')">Infectology & AMS</a>
+        <a onclick="showContent('onco')">Onco-Critical Care</a>
+        <a onclick="showContent('pain')">Pain and Sedation</a>
+        <a onclick="showContent('eol')">End of Life Care</a>
+        <a onclick="showContent('pall')">Palliative Care</a>
+        <a onclick="showContent('pharma')">Pharmacology</a>
+        <a onclick="showContent('risk')">Risk & Management</a>
+        <a onclick="showContent('withdrawal')">Withdrawal and Delirium</a>
+        <a onclick="showContent('wellbeing')">Wellbeing</a>
+      </div>
+      <a onclick="showContent('lectures')">Weekly Lectures</a>
+      <a onclick="showContent('articles')">Articles</a>
+      <a onclick="showContent('quizzes')">Quizzes</a>
+      <a onclick="showContent('resources')">Resources</a>
+      <button class="logout" onclick="logout()">Logout</button>
+    </nav>
+
+    <div class="content" id="main-content">
+      <h2>Welcome</h2>
+      <p>Select a topic from the sidebar to begin.</p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Great Ormond Street Hospital | PICU Education
+  </footer>
+
+  <script>
+    function showContent(section) {
+      const content = {
+        induction: '<h2>Induction</h2><p>Welcome to your ICU rotation. Here you
