@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - GOSH ICU Learning Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eaf4fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .login-container img {
+      max-width: 120px;
+      margin-bottom: 1rem;
+    }
+
+    .login-container input {
+      display: block;
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-container button {
+      background-color: #00a9ce;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .login-container p#error {
+      color: red;
+      margin-top: 0.5rem;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="gosh-logo.png" alt="GOSH Logo">
+    <h2>GOSH ICU Learning Portal</h2>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button id="login">Login</button>
+    <p id="error"></p>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCWIylrxyEoB65my9bAVubfNx9Y3OId-mI",
+      authDomain: "goshicu-portal.firebaseapp.com",
+      projectId: "goshicu-portal",
+      storageBucket: "goshicu-portal.firebasestorage.app",
+      messagingSenderId: "339833661792",
+      appId: "1:339833661792:web:72ee4fcf9d8ea8bb935605"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById("login").addEventListener("click", () => {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const errorElement = document.getElementById("error");
+
+      if (!email.endsWith("@gosh.nhs.uk")) {
+        errorElement.innerText = "Only @gosh.nhs.uk email addresses are allowed.";
+        return;
+      }
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          errorElement.innerText = "Invalid email or password.";
+        });
+    });
+  </script>
+</body>
+</html>
