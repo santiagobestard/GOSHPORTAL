@@ -39,10 +39,11 @@
     }
 
     .sidebar {
-      width: 200px;
+      width: 110px;
       background-color: #e6f2f7;
-      padding: 20px;
+      padding: 10px;
       box-sizing: border-box;
+      font-size: 0.85em;
     }
 
     .sidebar ul {
@@ -57,21 +58,10 @@
       font-weight: bold;
     }
 
-    .sidebar li ul {
-      list-style-type: none;
-      padding-left: 10px;
-      margin-top: 5px;
-    }
-
-    .sidebar li ul li {
-      font-weight: normal;
-      margin-bottom: 5px;
-      color: #003087;
-    }
-
     .sidebar a {
       text-decoration: none;
       color: #003087;
+      display: block;
     }
 
     .sidebar a:hover {
@@ -100,39 +90,34 @@
   <div class="container">
     <nav class="sidebar">
       <ul>
-        <li onclick="showSection('induction')"><a>Induction</a></li>
-        <li>
-          <a onclick="toggleSubmenu('icu-course')">ICU Course</a>
-          <ul id="icu-course" class="hidden">
-            <li onclick="showSection('icu-intro')">Introduction to Paediatric Intensive Care</li>
-            <li onclick="showSection('monitoring')">Critical Care Monitoring</li>
-            <li onclick="showSection('airway')">Airway Management</li>
-            <li onclick="showSection('ventilation')">Mechanical Ventilation</li>
-            <li onclick="showSection('cardiac')">Cardiac Intensive Care</li>
-            <li onclick="showSection('neuro')">Neurocritical Care</li>
-            <li onclick="showSection('renal')">Renal and Electrolyte Management</li>
-            <li onclick="showSection('gi')">Gastrointestinal and Nutritional Support</li>
-            <li onclick="showSection('haem')">Haematology in Critical Care</li>
-            <li onclick="showSection('infection')">Infectious Diseases and AMS</li>
-            <li onclick="showSection('onco')">Oncology and Immunocompromised Patients</li>
-            <li onclick="showSection('pain')">Pain Management and Sedation</li>
-            <li onclick="showSection('delirium')">Delirium, Withdrawal and Agitation</li>
-            <li onclick="showSection('eol')">Palliative and End-of-Life Care</li>
-            <li onclick="showSection('wellbeing')">Family Support and Staff Wellbeing</li>
-            <li onclick="showSection('pharma')">Pharmacology in the PICU</li>
-            <li onclick="showSection('risk')">Clinical Risk Management and Patient Safety</li>
-          </ul>
-        </li>
-        <li onclick="showSection('lectures')"><a>Weekly Lectures</a></li>
-        <li onclick="showSection('articles')"><a>Articles</a></li>
-        <li onclick="showSection('quizzes')"><a>Quizzes</a></li>
-        <li onclick="showSection('resources')"><a>Resources</a></li>
+        <li onclick="showSection('induction')">Induction</li>
+        <li onclick="showSection('intro')">Introduction</li>
+        <li onclick="showSection('monitoring')">Monitoring</li>
+        <li onclick="showSection('airway')">Airway</li>
+        <li onclick="showSection('ventilation')">Ventilation</li>
+        <li onclick="showSection('cardiac')">Cardiac</li>
+        <li onclick="showSection('neuro')">Neuro</li>
+        <li onclick="showSection('renal')">Renal</li>
+        <li onclick="showSection('gi')">GI/Nutrition</li>
+        <li onclick="showSection('haem')">Haematology</li>
+        <li onclick="showSection('infection')">Infectious</li>
+        <li onclick="showSection('onco')">Oncology</li>
+        <li onclick="showSection('pain')">Pain/Sedation</li>
+        <li onclick="showSection('delirium')">Delirium</li>
+        <li onclick="showSection('eol')">Palliative</li>
+        <li onclick="showSection('wellbeing')">Wellbeing</li>
+        <li onclick="showSection('pharma')">Pharma</li>
+        <li onclick="showSection('risk')">Risk</li>
+        <li onclick="showSection('lectures')">Lectures</li>
+        <li onclick="showSection('articles')">Articles</li>
+        <li onclick="showSection('quizzes')">Quizzes</li>
+        <li onclick="showSection('resources')">Resources</li>
       </ul>
     </nav>
 
     <div class="content">
       <div id="induction">Welcome to your ICU rotation. Here's a guide to getting started.</div>
-      <div id="icu-intro" class="hidden">[Content for Introduction]</div>
+      <div id="intro" class="hidden">[Content for Introduction]</div>
       <div id="monitoring" class="hidden">[Content for Critical Care Monitoring]</div>
       <div id="airway" class="hidden">[Content for Airway Management]</div>
       <div id="ventilation" class="hidden">[Content for Mechanical Ventilation]</div>
@@ -162,11 +147,6 @@
         div.classList.add('hidden');
       });
       document.getElementById(id).classList.remove('hidden');
-    }
-
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(id);
-      submenu.classList.toggle('hidden');
     }
   </script>
 </body>
