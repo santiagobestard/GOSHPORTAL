@@ -51,7 +51,7 @@
       color: #003087;
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     .topbar {
@@ -98,7 +98,6 @@
       display: flex;
       flex: 1;
       min-height: 0;
-      height: 100%;
     }
 
     .sidebar {
@@ -160,6 +159,14 @@
       display: none;
     }
 
+    footer {
+      text-align: center;
+      background-color: #e6f2f7;
+      padding: 12px;
+      font-size: 0.85em;
+      color: #003087;
+    }
+
     @media (max-width: 768px) {
       .sidebar {
         font-size: 0.85em;
@@ -187,19 +194,19 @@
   </style>
 </head>
 <body>
-  <!-- Username & Logout Topbar -->
+  <!-- Topbar -->
   <div class="topbar">
     <div id="user-email">Loading...</div>
     <button id="logout-btn">Logout</button>
   </div>
 
-  <!-- Main Header -->
+  <!-- Header -->
   <header>
     <img src="gosh-logo.png" alt="GOSH Logo" />
     <h1>GOSH ICU Learning Portal</h1>
   </header>
 
-  <!-- Body Content -->
+  <!-- Main content -->
   <div class="container">
     <nav class="sidebar">
       <ul>
@@ -258,6 +265,11 @@
     </div>
   </div>
 
+  <!-- Footer -->
+  <footer>
+    © 2025 Great Ormond Street Hospital for Children NHS Foundation Trust
+  </footer>
+
   <script>
     function showSection(id) {
       document.querySelectorAll('.content > div').forEach(div => {
@@ -279,8 +291,5 @@
       submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     }
   </script>
-    <footer style="text-align: center; background-color: #e6f2f7; padding: 12px; font-size: 0.85em; color: #003087;">
-    © 2025 Great Ormond Street Hospital for Children NHS Foundation Trust
-  </footer>
 </body>
 </html>
